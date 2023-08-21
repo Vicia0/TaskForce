@@ -19,7 +19,7 @@ def register(request):
         if form.is_valid():
             new_user = form.save()
             messages.success(request, 'Account succesfully created. You can now login')
-            return redirect('walletapp:login')
+            return redirect('walletapp:login_user')
     return render(request, "register.html", context = {"form":form})
 
 def login_user(request):
@@ -27,13 +27,14 @@ def login_user(request):
     if request.method == 'POST':
         if form.is_valid():
             cd = form.cleaned_data
-            user = authenticate(request, email = cd['email'], password=cd['password']) 
+            user = authenticate(request, username=cd['username'], password=cd['password'])
             if user is not None:
                 login(request, user)
-                return redirect(request.GET.get('next','walletapp:home'))
+                return redirect(request.GET.get('next','walletapp:user_transactions'))
             else:
                 messages.error(request, 'Account does not exist')
     return render(request, "login.html", context = {"form":form})
+
 
 @login_required
 def user_transactions(request, username):

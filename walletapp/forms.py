@@ -35,9 +35,15 @@ class UserRegistrationForm(forms.ModelForm):
         return user
 
 
+# class CustomAuthForm(forms.Form): 
+#     email = forms.CharField(widget=EmailInput(attrs={'class':'form-control', 'placeholder':'Email', 'required':'required'}))
+#     password = forms.CharField(widget=PasswordInput(attrs={'class':'form-control','placeholder':'Password', 'required':'required'}))
+
 class CustomAuthForm(forms.Form): 
     email = forms.CharField(widget=EmailInput(attrs={'class':'form-control', 'placeholder':'Email', 'required':'required'}))
+    username = forms.CharField(widget=EmailInput(attrs={'class':'form-control', 'placeholder':'Username', 'required':'required'}))
     password = forms.CharField(widget=PasswordInput(attrs={'class':'form-control','placeholder':'Password', 'required':'required'}))
+
 
 class TransactionForm(forms.ModelForm):
     class Meta:
