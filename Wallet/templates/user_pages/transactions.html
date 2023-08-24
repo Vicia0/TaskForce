@@ -1,0 +1,53 @@
+{% extends 'userpages.html' %}
+
+{% block userpages %}
+{% load static %}
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{% static 'css/main.css' %}">
+
+<h2>Transactions</h2>
+
+<form method="get">
+    <label for="account-select">Select Account:</label>
+    <select id="account-select" name="account">
+        <option value="">All Accounts</option>
+        {% for account in user_accounts %}
+            <option value="{{ account.id }}">{{ account.name }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Filter</button>
+    <a href="{% url 'walletapp:add_account'%}""> Add Account </a>
+</form>
+<br>
+<a href="{% url 'walletapp:report'%}""> Generate report </a>
+<a href="{% url 'walletapp:create_transaction'%}""> Create Transaction </a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Account</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaction in transactions %}
+            <tr>
+                <td>{{ transaction.date }}</td>
+                <td>{{ transaction.account.name }}</td>
+                <td>{{ transaction.amount }}</td>
+                <td>{{ transaction.transaction_type }}</td>
+                {% if transaction.transaction_type|lower == 'expense' %}
+                    <td>{{ transaction.category }}</td>
+                {% else %}
+                    <td>N/A</td>
+                {% endif %}
+                <td>{{ transaction.description }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

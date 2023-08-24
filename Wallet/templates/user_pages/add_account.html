@@ -1,0 +1,10 @@
+{% extends 'userpages.html' %}
+
+{% block userpages %}
+    <h2>Add Account</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Account</button>
+    </form>
+{% endblock %}

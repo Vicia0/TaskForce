@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+
+{% block body %}
+{% load static %}
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@500;600&display=swap" rel="stylesheet">
+<link rel='stylesheet' href="{%static 'css/main.css'%}">
+
+    <div class="container">
+        <form class="form-signin">
+            <h2 class="form-signin-heading text-center">Finance Tracker</h2>
+            {% if messages %}
+                {% for message in messages %}
+                    <p class='text-danger text-center'>{{message|safe}} </p>
+                {% endfor %}       
+            {% endif %}
+    
+            <div>
+                <small class='text-muted text-sm'>Don't have an account? <a href="{% url 'walletapp:register'%}" >Register</a></small>
+            </div>
+            <div>
+                <small class='text-muted text-sm'>You have an account? <a href="{% url 'walletapp:login'%}" >Login</a></small>
+            </div>
+        </form>
+
+    </div>
+
+{% endblock %}
+

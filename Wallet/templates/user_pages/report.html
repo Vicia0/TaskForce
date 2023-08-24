@@ -1,0 +1,9 @@
+{% extends 'userpages.html' %}
+
+{% block userpages %}
+{% load static %}
+
+<h2>Report</h2>
+
+<img src="data:image/png;base64,{{ graph_image }}" alt="Transaction Graph">
+{% endblock %}

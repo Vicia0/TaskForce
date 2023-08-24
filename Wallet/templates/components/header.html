@@ -1,0 +1,9 @@
+<div>
+    <a href="{% url 'walletapp:user_transactions' %}">Accounts</a>
+    <a href="{% url 'walletapp:user_transactions' %}">Transactions</a>
+    <a href="{% url 'walletapp:user_transactions' %}">Budget</a>
+    <form action="{% url 'walletapp:logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+</div>
